@@ -1,0 +1,56 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "assigneesFromCodeOwners": true,
+  "labels": [ "renovate" ],
+  "packageRules": [
+    {
+      "description": "Automatically update minor and patch versions of container images",
+      "addLabels": [ "renovate/container-images", "renovate/automerge" ],
+      "automerge": true,
+      "matchDatasources":[ "docker" ],
+      "matchUpdateTypes": [ "minor", "patch"]
+    },
+    {
+      "description": "Prepare MR for major update of container images",
+      "addLabels": [ "renovate/container-images", "renovate/automerge" ],
+      "automerge": false,
+      "matchDatasources":[ "docker" ],
+      "matchUpdateTypes": [ "major"]
+    },
+    {
+      "description": "Automatically update minor and patch versions of used drone-ci images",
+      "addLabels": [ "renovate/droneci", "renovate/automerge" ],
+      "automerge": true,
+      "matchManagers": "droneci",
+      "matchUpdateTypes": [ "minor", "patch"]
+    },
+    {
+      "description": "Prepare MR for major update of used drone-ci images",
+      "addLabels": [ "renovate/droneci", "renovate/automerge" ],
+      "automerge": false,
+      "matchManagers": "droneci",
+      "matchUpdateTypes": [ "major"]
+    },
+    {
+      "description": "Automatically update minor and patch versions of go modules",
+      "addLabels": [ "renovate/gomod", "renovate/automerge" ],
+      "automerge": true,
+      "matchBaseBranches": [ "master" ],
+      "matchManagers": [ "gomod" ],
+      "matchUpdateTypes": [ "minor", "patch" ]
+    },
+    {
+      "description": "Prepare MR for major update of go modules",
+      "addLabels": [ "renovate/gomod" ],
+      "automerge": false,
+      "matchBaseBranches": [ "master" ],
+      "matchManagers": [ "gomod" ],
+      "matchUpdateTypes": [ "major" ]
+    }
+  ],
+  "postUpdateOptions": [
+    "gomodTidy"
+  ],
+  "rebaseLabel": "renovate/rebase",
+  "rebaseWhen": "behind-base-branch"
+}
