@@ -13,7 +13,7 @@ RUN set -ex && \
 
 # TARGET
 # =====================================================================
-FROM docker.io/library/alpine:3.20
+FROM docker.io/library/alpine:3.21
 
 ARG VERSION=latest
 
