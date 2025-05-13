@@ -20,11 +20,26 @@ all: clean ${EXECUTABLE_TARGETS}
 getpsrc:
 	go build -tags netgo -ldflags "-X main.version=${VERSION}" -o ${@} main.go
 
+
 # CLEAN
 # ==============================================================================
 PHONY+=clean
 clean:
 	rm -f -r $(shell pwd)/getpsrc*
+
+# TESTS
+# ==============================================================================
+PHONY+=test/unit
+test/unit:
+	CGO_ENABLED=0 \
+	GOPROXY=$(shell go env GOPROXY) \
+		go test -v -p 1 -coverprofile=coverage.txt -covermode=count -timeout 1200s ./...
+
+PHONY+=test/coverage
+test/coverage: test/unit
+	CGO_ENABLED=0 \
+	GOPROXY=$(shell go env GOPROXY) \
+		go tool cover -html=coverage.txt
 
 # GOLANGCI-LINT
 # ==============================================================================
