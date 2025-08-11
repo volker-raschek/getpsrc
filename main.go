@@ -36,5 +36,8 @@ func main() {
 		log.Fatalf("failed to find gateway for ip: %v", err.Error())
 	}
 
-	fmt.Fprintln(os.Stdout, prefferedSrc.String())
+	_, err = fmt.Fprintln(os.Stdout, prefferedSrc.String())
+	if err != nil {
+		log.Fatalf("failed to print gateway on stdout: %v", err.Error())
+	}
 }

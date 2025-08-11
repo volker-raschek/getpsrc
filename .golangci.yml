@@ -1,27 +1,13 @@
-run:
-  timeout: 10m
-  tests: true
-
+version: "2"
 linters:
-  disable-all: true
+  default: standard
   enable:
-  # Default
-  - deadcode
-  - errcheck
-  - gosimple
-  - govet
-  - ineffassign
-  - staticcheck
-  - structcheck
-  - typecheck
-  - unused
-  - varcheck
+  - errname
+  - gosec
 
-  # Additionally linters
-  - bodyclose
-  - misspell
-  - nilerr
-  - rowserrcheck
-  - sqlclosecheck
-  - unparam
-  - whitespace
+  exclusions:
+    rules: []
+    warn-unused: true
+
+run:
+  tests: true
