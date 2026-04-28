@@ -31,12 +31,12 @@ func main() {
 		log.Fatalf("failed to get new routing instance: %v", err.Error())
 	}
 
-	_, _, prefferedSrc, err := router.Route(ip)
+	_, _, preferredSrc, err := router.Route(ip)
 	if err != nil {
 		log.Fatalf("failed to find gateway for ip: %v", err.Error())
 	}
 
-	_, err = fmt.Fprintln(os.Stdout, prefferedSrc.String())
+	_, err = fmt.Fprintln(os.Stdout, preferredSrc.String())
 	if err != nil {
 		log.Fatalf("failed to print gateway on stdout: %v", err.Error())
 	}

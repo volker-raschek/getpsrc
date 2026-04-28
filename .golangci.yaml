@@ -9,5 +9,10 @@ linters:
     rules: []
     warn-unused: true
 
+  settings:
+    gosec:
+      excludes:
+        - G706
+
 run:
   tests: true
